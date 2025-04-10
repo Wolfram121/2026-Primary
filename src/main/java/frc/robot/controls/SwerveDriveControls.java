@@ -45,35 +45,40 @@ public class SwerveDriveControls extends Command {
           slider,
           0,
           0,
-          !fieldOriented);
+          !fieldOriented,
+          drivetrain);
       cmd.execute();
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovRight) {
       cmd = new SwerveDriveCommands(
           0,
           slider,
           0,
-          !fieldOriented);
+          !fieldOriented,
+          drivetrain);
       cmd.execute();
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovDown) {
       cmd = new SwerveDriveCommands(
           -slider,
           0,
           0,
-          !fieldOriented);
+          !fieldOriented,
+          drivetrain);
       cmd.execute();
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovLeft) {
       cmd = new SwerveDriveCommands(
           0,
           -slider,
           0,
-          !fieldOriented);
+          !fieldOriented,
+          drivetrain);
       cmd.execute();
     } else {
       cmd = new SwerveDriveCommands(
           frontSpeed,
           sideSpeed,
           turnSpeed,
-          fieldOriented);
+          fieldOriented,
+          drivetrain);
       cmd.execute();
     }
   }

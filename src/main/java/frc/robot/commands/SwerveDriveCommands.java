@@ -9,19 +9,20 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drivetrain;
 
 public class SwerveDriveCommands extends Command {
-  private Drivetrain drivetrain = Drivetrain.getInstance();
   private double drive;
   private double turn;
   private double rotate;
   private boolean fieldOriented;
+  private final Drivetrain drivetrain;
 
   /** Creates a new SwerveDrive. */
-  public SwerveDriveCommands(double drive, double turn, double rotate, boolean fieldOriented) {
+  public SwerveDriveCommands(double drive, double turn, double rotate, boolean fieldOriented,  Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.drive = drive;
     this.turn = turn;
     this.rotate = rotate;
     this.fieldOriented = fieldOriented;
+    this.drivetrain = drivetrain;
     addRequirements(drivetrain);
   }
 
