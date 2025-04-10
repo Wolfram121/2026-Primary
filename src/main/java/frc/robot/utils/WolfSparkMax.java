@@ -24,7 +24,6 @@ public class WolfSparkMax extends SparkMax {
      */
     public WolfSparkMax(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted) {
         super(deviceId, m);
-        System.out.println("ඞ");
 
         SparkMaxConfig config = new SparkMaxConfig();
         config
@@ -45,29 +44,48 @@ public class WolfSparkMax extends SparkMax {
         SparkMaxConfig config = new SparkMaxConfig();
         config
                 .inverted(inverted)
-                .idleMode(mode);
+                .idleMode(mode)
+                .smartCurrentLimit(limit);
         config.closedLoop.pid(kP, kI, kD);
 
         super.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         String key = "Spark " + this.getDeviceId() + " Flashes";
         Preferences.setDouble(key, Preferences.getDouble(key, 0) + 1);
     }
-
+    /**
+     * Moves the motor to a target position using simple manual control.
+     * This method is blocking and should NOT be used in competition code.
+     *
+     * @param target The desired position in mechanism units (pre-gear ratio).
+     */
     public void Target(double target) {
-        this.target = target * this.GearRatio();
+        // Convert target from mechanism units to motor encoder units
+        this.target = target * this.getGearRatio();
 
-        while (Math.abs(this.target - this.getEncoder().getPosition()) > 0.001) {
-            double speed = Math.copySign(Math.min(1, Math.abs(this.target - this.getEncoder().getPosition())), this.target - this.getEncoder().getPosition());
+        // Run motor until it's within tolerance of the target
+        double distanceRequired = Math.abs(this.target - this.getEncoder().getPosition());
+        while (distanceRequired > 0.001) {
+            double currentPosition = this.getEncoder().getPosition();
+            double error = this.target - currentPosition;
+
+            // Proportional speed, capped at 1
+            double speed = Math.copySign(
+                Math.min(1.0, Math.abs(error)),
+                error
+            );
+
             this.set(speed);
         }
+
+        // Stop the motor once target is reached
         this.set(0);
     }
 
-    public void GearRatio(double gearRatio) {
+    public void setGearRatio(double gearRatio) {
         this.gearRatio = gearRatio;
     }
 
-    public double GearRatio() {
+    public double getGearRatio() {
         return this.gearRatio;
     }
 }
