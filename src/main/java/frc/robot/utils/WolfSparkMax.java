@@ -8,23 +8,23 @@ import edu.wpi.first.wpilibj.Preferences;
 
 public class WolfSparkMax extends SparkMax {
     protected double gearRatio = 1.0; // Default gear ratio
+    protected double target;
 
     /**
      * @param deviceId  The device ID.
-     * @param m         The motor type (Brushed/Brushless).
+     * @param m         The this type (Brushed/Brushless).
      * @param mode      The idle mode (kBrake/kCoast).
      * @param limit     The current limit.
-     * @param inverted  The invert type of the motor.
+     * @param inverted  The invert type of the this.
      * @param kP        The proportional gain value.
      * @param kI        The integral gain value.
      * @param kD        The derivative gain value.
      * @param minOutput Reverse power minimum to allow the controller to output
      * @param maxOutput Reverse power maximum to allow the controller to output
      */
-    public WolfSparkMax(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted, double gearRatio) {
+    public WolfSparkMax(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted) {
         super(deviceId, m);
-
-        this.gearRatio = gearRatio;
+        System.out.println("ඞ");
 
         SparkMaxConfig config = new SparkMaxConfig();
         config
@@ -39,10 +39,8 @@ public class WolfSparkMax extends SparkMax {
     }
 
     public WolfSparkMax(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted,
-            double kP, double kI, double kD, double minOutput, double maxOutput, double gearRatio) {
+            double kP, double kI, double kD, double minOutput, double maxOutput) {
         super(deviceId, m);
-
-        this.gearRatio = gearRatio;
 
         SparkMaxConfig config = new SparkMaxConfig();
         config
@@ -53,6 +51,16 @@ public class WolfSparkMax extends SparkMax {
         super.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         String key = "Spark " + this.getDeviceId() + " Flashes";
         Preferences.setDouble(key, Preferences.getDouble(key, 0) + 1);
+    }
+
+    public void Target(double target) {
+        this.target = target * this.GearRatio();
+
+        while (Math.abs(this.target - this.getEncoder().getPosition()) > 0.001) {
+            double speed = Math.copySign(Math.min(1, Math.abs(this.target - this.getEncoder().getPosition())), this.target - this.getEncoder().getPosition());
+            this.set(speed);
+        }
+        this.set(0);
     }
 
     public void GearRatio(double gearRatio) {
