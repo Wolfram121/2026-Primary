@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drivetrain;
 
 public class SwerveDriveCommands extends Command {
-  private Drivetrain drivetrain = Drivetrain.getInstance();
   private double drive;
   private double turn;
   private double rotate;
   private boolean fieldOriented;
+  private Drivetrain drivetrain;
 
   /** Creates a new SwerveDrive. */
   public SwerveDriveCommands(double drive, double turn, double rotate, boolean fieldOriented) {
@@ -22,19 +22,20 @@ public class SwerveDriveCommands extends Command {
     this.turn = turn;
     this.rotate = rotate;
     this.fieldOriented = fieldOriented;
-    addRequirements(drivetrain);
+    this.drivetrain = new Drivetrain();
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.swerveDrive(
-        drive, 
-        turn, 
+    this.drivetrain.swerveDrive(
+        drive,
+        turn,
         rotate,
         fieldOriented,
         new Translation2d(),
