@@ -3,17 +3,14 @@ package frc.robot.controls;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.utils.Constants.JoystickConstants;
-import frc.robot.subsystems.Drivetrain;
 import frc.robot.commands.SwerveDriveCommands;
 
 public class SwerveDriveControls extends Command {
-  private Drivetrain drivetrain = Drivetrain.getInstance();
   private boolean fieldOriented = true;
   private SwerveDriveCommands cmd;
 
   /** Creates a new SwerveDrive. */
   public SwerveDriveControls() {
-    addRequirements(drivetrain);
   }
 
   // Called when the command is initially scheduled.
@@ -41,32 +38,16 @@ public class SwerveDriveControls extends Command {
 
     // D-pad control mapping
     if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovUp) {
-      cmd = new SwerveDriveCommands(
-          slider,
-          0,
-          0,
-          !fieldOriented);
+      cmd = new SwerveDriveCommands(slider, 0, 0, !fieldOriented);
       cmd.execute();
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovRight) {
-      cmd = new SwerveDriveCommands(
-          0,
-          slider,
-          0,
-          !fieldOriented);
+      cmd = new SwerveDriveCommands(0, slider, 0, !fieldOriented);
       cmd.execute();
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovDown) {
-      cmd = new SwerveDriveCommands(
-          -slider,
-          0,
-          0,
-          !fieldOriented);
+      cmd = new SwerveDriveCommands(-slider, 0, 0, !fieldOriented);
       cmd.execute();
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovLeft) {
-      cmd = new SwerveDriveCommands(
-          0,
-          -slider,
-          0,
-          !fieldOriented);
+      cmd = new SwerveDriveCommands(0, -slider, 0, !fieldOriented);
       cmd.execute();
     } else {
       cmd = new SwerveDriveCommands(
