@@ -6,7 +6,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.wpilibj.Preferences;
 
-public class WolfSparkMax extends SparkMax {
+public class VikingSparkMax_TBD extends SparkMax {
     protected double gearRatio = 1.0; // Default gear ratio
 
     /**
@@ -21,7 +21,7 @@ public class WolfSparkMax extends SparkMax {
      * @param minOutput Reverse power minimum to allow the controller to output
      * @param maxOutput Reverse power maximum to allow the controller to output
      */
-    public WolfSparkMax(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted, double gearRatio) {
+    public VikingSparkMax_TBD(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted, double gearRatio) {
         super(deviceId, m);
 
         this.gearRatio = gearRatio;
@@ -38,7 +38,7 @@ public class WolfSparkMax extends SparkMax {
         Preferences.setDouble(key, Preferences.getDouble(key, 0) + 1);
     }
 
-    public WolfSparkMax(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted,
+    public VikingSparkMax_TBD(int deviceId, MotorType m, IdleMode mode, int limit, boolean inverted,
             double kP, double kI, double kD, double minOutput, double maxOutput, double gearRatio) {
         super(deviceId, m);
 
@@ -55,11 +55,11 @@ public class WolfSparkMax extends SparkMax {
         Preferences.setDouble(key, Preferences.getDouble(key, 0) + 1);
     }
 
-    public void GearRatio(double gearRatio) {
+    public void setGearRatio(double gearRatio) {
         this.gearRatio = gearRatio;
     }
 
-    public double GearRatio() {
+    public double getGearRatio() {
         return this.gearRatio;
     }
 }

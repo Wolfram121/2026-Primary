@@ -1,18 +1,18 @@
 package frc.robot.utils;
 
 public class StepMotor {
-    private final WolfSparkMax motor;
+    private final VikingSparkMax_TBD motor;
     private double targetPosition;
     private final double kP = 0.1; // Tune this to your robot
 
-    public StepMotor(WolfSparkMax motor, double target) {
+    public StepMotor(VikingSparkMax_TBD motor, double target) {
         this.motor = motor;
         setTarget(target);
     }
 
     public void setTarget(double target) {
         // Convert real-world target to encoder units
-        this.targetPosition = target * motor.GearRatio();
+        this.targetPosition = target * motor.getGearRatio();
     }
 
     public void update() {
