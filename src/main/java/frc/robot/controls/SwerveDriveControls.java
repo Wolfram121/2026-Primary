@@ -24,9 +24,15 @@ public class SwerveDriveControls extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double slider = (RobotContainer.controller3D.getRawAxis(JoystickConstants.Slider) + 1) / 2.0;
+    double slider = (-RobotContainer.controller3D.getRawAxis(JoystickConstants.Slider) + 1) / 2.0;
     if (slider == 0)  {
       slider = 0.001;
+    }
+
+    if (RobotContainer.controller3D.getRawButton(JoystickConstants.BaseRF)) {
+      fieldOriented = false;
+    } else if (RobotContainer.controller3D.getRawButton(JoystickConstants.BaseLF)) {
+      fieldOriented = true;
     }
 
     double frontSpeed = -RobotContainer.controller3D.getRawAxis(JoystickConstants.Y) * slider;
@@ -36,7 +42,7 @@ public class SwerveDriveControls extends Command {
     // D-pad control mapping
     if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovUp) {
       cmd = new SwerveDriveCommands(
-          0.5,
+          slider,
           0,
           0,
           !fieldOriented);
@@ -44,13 +50,13 @@ public class SwerveDriveControls extends Command {
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovRight) {
       cmd = new SwerveDriveCommands(
           0,
-          0.5,
+          slider,
           0,
           !fieldOriented);
       cmd.execute();
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovDown) {
       cmd = new SwerveDriveCommands(
-          -0.5,
+          -slider,
           0,
           0,
           !fieldOriented);
@@ -58,7 +64,7 @@ public class SwerveDriveControls extends Command {
     } else if (RobotContainer.controller3D.getPOV() == JoystickConstants.PovLeft) {
       cmd = new SwerveDriveCommands(
           0,
-          -0.5,
+          -slider,
           0,
           !fieldOriented);
       cmd.execute();

@@ -118,10 +118,10 @@ public final class Constants {
 
     public static final int Trigger = 1;
     public static final int Side = 2;
-    public static final int LF = 3;
-    public static final int RF = 4;
-    public static final int LB = 5;
-    public static final int RB = 6;
+    public static final int LB = 3;
+    public static final int RB = 4;
+    public static final int LF = 5;
+    public static final int RF = 6;
     public static final int BaseLF = 7;
     public static final int BaseRF = 8;
     public static final int BaseLM = 9;

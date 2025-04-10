@@ -16,7 +16,7 @@ import frc.robot.controls.SwerveDriveControls;
 
 public class RobotContainer {
   public static final Joystick controller3D = new Joystick(0);
-  public static final JoystickButton resetHeading_Start = new JoystickButton(controller3D, Constants.JoystickConstants.BaseLF);
+  public static final JoystickButton resetHeading_Start = new JoystickButton(controller3D, Constants.JoystickConstants.BaseRM);
   // public static ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain drivetrain = Drivetrain.getInstance();
   private SwerveDriveCommands swerveStopCmd;
