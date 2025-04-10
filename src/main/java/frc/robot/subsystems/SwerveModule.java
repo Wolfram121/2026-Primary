@@ -47,8 +47,8 @@ public class SwerveModule extends SubsystemBase {
 
     turnID = turnMotorId;
 
-    driveMotor = new WolfSparkMax(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed, 1);
-    turnMotor = new WolfSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed, 1);
+    driveMotor = new WolfSparkMax(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed);
+    turnMotor = new WolfSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed);
 
     driveEncoder = driveMotor.getEncoder();
     turnEncoder = turnMotor.getEncoder();
