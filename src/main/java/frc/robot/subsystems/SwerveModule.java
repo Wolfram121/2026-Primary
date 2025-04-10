@@ -15,12 +15,12 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.utils.VikingSparkMax_TBD;
+import frc.robot.utils.WolfSparkMax;
 import frc.robot.utils.Constants.SwerveConstants;
 
 public class SwerveModule extends SubsystemBase {
-  private VikingSparkMax_TBD driveMotor;
-  private VikingSparkMax_TBD turnMotor;
+  private WolfSparkMax driveMotor;
+  private WolfSparkMax turnMotor;
 
   private RelativeEncoder driveEncoder;
   private RelativeEncoder turnEncoder;
@@ -47,8 +47,8 @@ public class SwerveModule extends SubsystemBase {
 
     turnID = turnMotorId;
 
-    driveMotor = new VikingSparkMax_TBD(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed, 1);
-    turnMotor = new VikingSparkMax_TBD(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed, 1);
+    driveMotor = new WolfSparkMax(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed, 1);
+    turnMotor = new WolfSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed, 1);
 
     driveEncoder = driveMotor.getEncoder();
     turnEncoder = turnMotor.getEncoder();
