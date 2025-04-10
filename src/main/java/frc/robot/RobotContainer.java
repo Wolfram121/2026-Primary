@@ -30,7 +30,7 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(new SwerveDriveControls());
     configureBindings();
     auton_chooser = new SendableChooser<>();
-    swerveStopCmd = new SwerveDriveCommands(0, 0, 0, true, drivetrain);
+    swerveStopCmd = new SwerveDriveCommands(0, 0, 0, true);
     NamedCommands.registerCommand("Swerve Stop", swerveStopCmd);
 
     /** auton_chooser.setDefaultOption("Leave Start Position", nonSpeakerCommand);
