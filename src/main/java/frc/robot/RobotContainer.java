@@ -26,7 +26,8 @@ public class RobotContainer {
   //private final Command middleCommand = new MiddleStartAuto();
 
   public RobotContainer() {
-    CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture(0); // Start capturing from the first camera
+    CameraServer.startAutomaticCapture(1); // Start capturing from the second camera
     drivetrain.setDefaultCommand(new SwerveDriveControls());
     configureBindings();
     auton_chooser = new SendableChooser<>();
