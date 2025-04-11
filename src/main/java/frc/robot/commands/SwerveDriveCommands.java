@@ -16,13 +16,13 @@ public class SwerveDriveCommands extends Command {
   private Drivetrain drivetrain;
 
   /** Creates a new SwerveDrive. */
-  public SwerveDriveCommands(double drive, double turn, double rotate, boolean fieldOriented) {
+  public SwerveDriveCommands(double drive, double turn, double rotate, boolean fieldOriented, Drivetrain drivetrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.drive = drive;
     this.turn = turn;
     this.rotate = rotate;
     this.fieldOriented = fieldOriented;
-    this.drivetrain = new Drivetrain();
+    this.drivetrain = drivetrain;
   }
 
   // Called when the command is initially scheduled.
