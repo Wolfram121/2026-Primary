@@ -14,20 +14,20 @@ public final class Constants {
   }
 
   public static class SwerveIDs {
-    public static final int LFD = 0;
+    public static final int LFD = 4;
     public static final int LFT = 1;
-    public static final int LBD = 2;
-    public static final int LBT = 3;
-    public static final int RBD = 4;
-    public static final int RBT = 5;
-    public static final int RFD = 6;
+    public static final int LBD = 5;
+    public static final int LBT = 6;
+    public static final int RBD = 8;
+    public static final int RBT = 2;
+    public static final int RFD = 3;
     public static final int RFT = 7;
-    public static final int PIGEON = 8;
+    public static final int PIGEON = 15;
 
-    public static final int LF_CAN = 0;
-    public static final int LB_CAN = 1;
-    public static final int RB_CAN = 2;
-    public static final int RF_CAN = 3;
+    public static final int LF_CAN = 11;
+    public static final int LB_CAN = 13;
+    public static final int RB_CAN = 14;
+    public static final int RF_CAN = 12;
   }
 
   public static class IOConstants {

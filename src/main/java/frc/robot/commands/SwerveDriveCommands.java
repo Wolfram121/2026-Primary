@@ -13,7 +13,7 @@ public class SwerveDriveCommands extends Command {
   private double turn;
   private double rotate;
   private boolean fieldOriented;
-  private Drivetrain drivetrain;
+  private Drivetrain drivetrain = Drivetrain.getInstance();
 
   /** Creates a new SwerveDrive. */
   public SwerveDriveCommands(double drive, double turn, double rotate, boolean fieldOriented) {
@@ -22,7 +22,6 @@ public class SwerveDriveCommands extends Command {
     this.turn = turn;
     this.rotate = rotate;
     this.fieldOriented = fieldOriented;
-    this.drivetrain = new Drivetrain();
   }
 
   // Called when the command is initially scheduled.
